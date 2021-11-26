@@ -3,7 +3,7 @@ import DashboardLayout from './components/DashboardLayout';
 import MainLayout from './components/MainLayout';
 
 import Dashboard from './pages/Dashboard/Dashboard';
-import NotFound from './pages/NotFound/NotFound';
+// import NotFound from './pages/NotFound/NotFound';
 
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
@@ -23,12 +23,12 @@ import WorkSpaces from './pages/WorkSpaces/WorkSpaces';
 import WorkSpaceLayout from './components/AppLayouts/WorkSpaceLayout';
 import WorkSpace from './pages/WorkSpace/WorkSpace';
 import TeamLayout from './components/AppLayouts/TeamLayout';
-import ProjectLayout from './components/AppLayouts/ProjectLayout';
+// import ProjectLayout from './components/AppLayouts/ProjectLayout';
 import TasksLayout from './components/AppLayouts/TasksLayout';
 import WorkFlowLayout from './components/AppLayouts/WorkFlowLayout';
 import AnalysisLayout from './components/AppLayouts/AnalysisLayout';
 import SettingsLayout from './components/AppLayouts/SettingsLayout';
-import Projects from './pages/Projects/Projects';
+// import Projects from './pages/Projects/Projects';
 import WorkFlows from './pages/WorkFlows/WorkFlows';
 import Virtualization from './pages/Virtualization/Virtualization';
 import VirtualizationLayout from './components/AppLayouts/VirtualizationLayout';
@@ -36,7 +36,7 @@ import VirtualDashboard from './pages/VirtualDashboard/VirtualDashboard';
 import AllUsers from './pages/Team/AllUsers';
 import UsersAccount from './pages/Team/Account';
 import Managers from './pages/Team/Managers';
-import CheckSquare from './pages/CheckSquare/CheckSquare';
+// import CheckSquare from './pages/CheckSquare/CheckSquare';
 const routes = [
   {
     path: 'app',

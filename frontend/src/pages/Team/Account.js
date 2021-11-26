@@ -17,7 +17,6 @@ const UsersAccount = () => {
   const location = useLocation();
   // let { userID } = useParams();
   // console.log(userID);
-  console.log(location.state.newId);
   // const newId = location.state.userID;
   return (
     <>
@@ -30,7 +29,7 @@ const UsersAccount = () => {
             onClick={handleOpen}
             startIcon={<AddOutlined />}
           >
-            Add
+            Add {open}
           </Button>
         }
       />

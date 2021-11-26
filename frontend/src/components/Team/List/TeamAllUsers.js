@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { TextField, Button } from '@mui/material';
 import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
@@ -27,10 +27,10 @@ import { SearchOutlined } from '@mui/icons-material';
 import { styled } from '@mui/material/styles';
 import { InputAdornment, InputBase } from '@mui/material';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Link as RouteLink } from 'react-router-dom';
+// import { Link as RouteLink } from 'react-router-dom';
 import { Avatar } from '@mui/material';
-import { IMaskInput } from 'react-imask';
-import PhoneInput from 'mui-phone-input';
+// import { IMaskInput } from 'react-imask';
+// import PhoneInput from 'mui-phone-input';
 //npm i mui-phone-input
 // import request from '../../axios';
 import request from '../../../axios';
@@ -60,16 +60,6 @@ const StyledSearchBox = styled(InputBase)(({ theme }) => ({
     borderColor: theme.palette.primary.main
   }
 }));
-function createData(id, name, email, phonNumber, company, edit) {
-  return {
-    id,
-    name,
-    email,
-    phonNumber,
-    company,
-    edit
-  };
-}
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -118,7 +108,7 @@ const headCells = [
     id: 'phonNumber',
     numeric: false,
     disablePadding: false,
-    label: 'Phon-number'
+    label: 'Mobile'
   },
   {
     id: 'company',
@@ -198,13 +188,18 @@ EnhancedTableHead.propTypes = {
 };
 
 const EnhancedTableToolbar = (props) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   let { numSelected } = props;
-  const { selected } = props; //delte id
+  const { selected } = props;
+  const { numberselected } = props; //delte id
   const check = props.checkDel;
   const deleteRow = async (id) => {
     try {
-      const response = await request('delete', `/delete_table/${id}`, {});
+      const response = await request(
+        'delete',
+        `/delete_table/${numberselected}`,
+        {}
+      );
       if (response.status === 'ok') {
         alert('삭제완료.');
       }
@@ -271,12 +266,6 @@ EnhancedTableToolbar.propTypes = {
 };
 
 export default function TeamManagers() {
-  const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('project');
-  const [selected, setSelected] = React.useState([]);
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(20);
-
   const initialFormState = {
     ID: null,
     name: '',
@@ -284,13 +273,19 @@ export default function TeamManagers() {
     phonnumber: ``,
     company: ''
   };
+  const [order, setOrder] = React.useState('asc');
+  const [orderBy, setOrderBy] = React.useState('project');
+  const [selected, setSelected] = React.useState([]);
+  const [numberselected, setnumSelected] = React.useState([]);
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(20);
   const [values, setValues] = useState(initialFormState);
+  const [getvalues, setGetValues] = useState([]);
+  const [orows, setoRows] = useState([]);
   const checkDel = (ck) => {
     setSelected(ck);
   };
 
-  const [getvalues, setGetValues] = useState([]);
-  const [orows, setoRows] = useState([]);
   const handleChangeT = (event) => {
     setValues({
       ...values,
@@ -315,14 +310,13 @@ export default function TeamManagers() {
   useEffect(() => {
     getMessages();
     // }, []);
-  }, [values, selected]);
+  }, [values]);
   // }, [getvalues,order, orderBy, selected, page, rowsPerPage]);
 
   const handleAdd = async () => {
     try {
       const response = await request('post', `create_table`, values);
       // data(response.result);
-      console.log(response.result);
       if (response.status === 'ok') {
         alert('팀이 생성되었습니다.');
 
@@ -345,21 +339,26 @@ export default function TeamManagers() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = getvalues.map((n) => n.ID);
+      const newSelecteds = getvalues.map((n) => n.name);
+      const newSelectedId = getvalues.map((n) => n.ID);
       setSelected(newSelecteds);
+      setnumSelected(newSelectedId);
       return;
     }
     // console.log(selected);
     setSelected([]);
+    setnumSelected([]);
   };
 
   const handleClick = (event, row) => {
-    const selectedIndex = selected.indexOf(row.ID);
+    const selectedIndex = selected.indexOf(row.name);
     // const selectedId = selected.indexOf(id);
     let newSelected = [];
+    let newSelectedId = [];
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, row.ID);
+      newSelected = newSelected.concat(selected, row.name);
+      newSelectedId = newSelectedId.concat(numberselected, row.ID);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -372,6 +371,8 @@ export default function TeamManagers() {
     }
 
     setSelected(newSelected);
+    setnumSelected(newSelectedId);
+    // setnumSelected;
     // console.log(selected);
   };
 
@@ -392,6 +393,7 @@ export default function TeamManagers() {
 
   const handleChange = (event) => {
     const searchedval = event.target.value;
+    console.log(searchedval);
     const filteredRows = getvalues.filter((row) => {
       return row.name.toLowerCase().includes(searchedval.toLowerCase());
     });
@@ -400,8 +402,6 @@ export default function TeamManagers() {
       console.log('hlep');
       setGetValues(orows);
     }
-    console.log(getvalues);
-    console.log(orows);
   };
 
   // const cancelSearch = () => {
@@ -470,6 +470,7 @@ export default function TeamManagers() {
         <EnhancedTableToolbar
           numSelected={selected.length}
           selected={selected}
+          numberselected={numberselected}
           checkDel={checkDel}
         />
 
@@ -506,7 +507,7 @@ export default function TeamManagers() {
                 {stableSort(getvalues, getComparator(order, orderBy))
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map((row, index) => {
-                    const isItemSelected = isSelected(row.ID);
+                    const isItemSelected = isSelected(row.name);
                     const labelId = `enhanced-table-checkbox-${index}`;
 
                     return (

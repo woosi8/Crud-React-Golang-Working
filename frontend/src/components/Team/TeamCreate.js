@@ -16,7 +16,7 @@ import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 import Typography from '@mui/material/Typography';
 import ClearIcon from '@mui/icons-material/Clear';
-import axios from 'axios';
+// import axios from 'axios';
 import request from '../../axios';
 
 // import TeamInvitation from './TeamInvitation';

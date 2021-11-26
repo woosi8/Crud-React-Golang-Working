@@ -9,7 +9,7 @@ import (
 )
 
 func DBConnect() *gorm.DB {
-	dsn := "cps:cps@tcp(localhost:3323)/article?charset=utf8mb4&parseTime=True&loc=Local"
+	dsn := "cps:cps@tcp(localhost:3324)/article?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 
 	if err != nil {

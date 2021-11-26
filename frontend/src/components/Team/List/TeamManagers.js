@@ -326,7 +326,6 @@ export default function TeamManagers() {
     // setDel(ck);
     setSelected(ck);
   };
-  console.log(selected);
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -344,6 +343,7 @@ export default function TeamManagers() {
   };
 
   const handleClick = (event, name) => {
+    console.log(name);
     const selectedIndex = selected.indexOf(name);
     let newSelected = [];
 
@@ -382,6 +382,7 @@ export default function TeamManagers() {
 
   const handleChange = (event) => {
     const searchedval = event.target.value;
+    console.log(searchedval);
     const filteredRows = rows.filter((row) => {
       return row.name.toLowerCase().includes(searchedval.toLowerCase());
     });

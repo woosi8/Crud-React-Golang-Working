@@ -1,7 +1,7 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
-import Link from '@mui/material/Link';
+// import Link from '@mui/material/Link';
 import { Form } from '../Custom/UserForm';
 import { Link as RouteLink } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
@@ -128,10 +128,17 @@ const LoginComponent = () => {
           flexDirection: 'column'
         }}
       >
-        <Typography variant="h8" noWrap component="div" color="gray" mt={1}>
+        <Typography
+          variant="h8"
+          noWrap
+          component="div"
+          color="gray"
+          mt={1}
+          style={{ display: 'inline-flex' }}
+        >
           Don't have an account?&nbsp;
-          <RouteLink to="/register">
-            <Link underline="hover">{'Sign Up'}</Link>
+          <RouteLink to="/register" style={{ textDecorationLine: 'none' }}>
+            <Typography color="primary">Sign Up</Typography>
           </RouteLink>
         </Typography>
       </Box>

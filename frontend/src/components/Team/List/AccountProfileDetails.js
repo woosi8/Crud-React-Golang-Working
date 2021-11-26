@@ -10,11 +10,11 @@ import {
   TextField
 } from '@mui/material';
 import { styled } from '@mui/material';
-import { logDOM } from '@testing-library/dom';
+// import { logDOM } from '@testing-library/dom';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
-import { useParams } from 'react-router';
-import { Navigate } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
+// import { useParams } from 'react-router';
+// import { Navigate } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 const StyledCardHeader = styled(CardHeader)(({ theme }) => ({
@@ -33,12 +33,12 @@ const StyledCardHeader = styled(CardHeader)(({ theme }) => ({
   }
 }));
 const AccountProfileDetails = (props) => {
-  const [values, setValues] = useState({
-    name: '',
-    company: '',
-    email: '',
-    phonnumber: ''
-  });
+  // const [values, setValues] = useState({
+  //   name: '',
+  //   company: '',
+  //   email: '',
+  //   phonnumber: ''
+  // });
   const navigate = useNavigate();
 
   const [getvalues, setGetValues] = useState([]);
@@ -48,16 +48,14 @@ const AccountProfileDetails = (props) => {
       [event.target.name]: event.target.value
     });
   };
-  const userId = window.location.pathname.substring(32, 35);
-  const location = useLocation();
-  let { newId } = useParams();
-  console.log(props.getid);
+  // const userId = window.location.pathname.substring(32, 35);
+  // const location = useLocation();
+  // let { newId } = useParams();
   const getMessages = () => {
     axios
       .get(`/get_tables/${props.getid}`)
       // .get(`/get_table/1`)
       .then(function (response) {
-        console.log(response);
         let data = response.data.result;
         setGetValues(data);
       })
@@ -70,7 +68,6 @@ const AccountProfileDetails = (props) => {
     axios
       .put(`/update_table/${props.getid}`, getvalues)
       .then(function (response) {
-        console.log(response);
         navigate('/app/team/allusers');
       })
       .catch(function (error) {
@@ -173,7 +170,7 @@ const AccountProfileDetails = (props) => {
           <Button
             color="primary"
             variant="contained"
-            onClick={() => updateUser(userId)}
+            onClick={() => updateUser(props.getid)}
           >
             Save details
           </Button>

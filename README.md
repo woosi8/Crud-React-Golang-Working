@@ -1,4 +1,11 @@
 # CRUD (진행중)
+ 1. docker-compose -f docker-compose.yml up --build (Config.go에 dsn에 docker-compose.yml에 ports,User,Password 똑같이 설정해 줘야 한다.
+ 2. cd frontend  npm install or yarn install
+ 3. cd backend go run main.go
+ 4. my sql 에서 Setup New Connection > 1번 에서 입력한 정보들을 바탕으로 생성
+    
+
+
 # BackEnd
 ## - Go 언어의 gin framwork를 사용하여 데이터 테이블 생성 및 수정,삭제, 업데이트 기능 구현 
    - 데이터 베이스는 MySQL를 사용함

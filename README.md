@@ -1,4 +1,4 @@
-# CRUD
+# CRUD (진행중)
 # BackEnd
 ## - Go 언어의 gin framwork를 사용하여 데이터 테이블 생성 및 수정,삭제, 업데이트 기능 구현 
    - 데이터 베이스는 MySQL를 사용함

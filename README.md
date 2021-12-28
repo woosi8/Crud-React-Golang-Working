@@ -31,3 +31,10 @@
 - src/components/pages/Team/Account.js (팀원 상세정보를 구성하는 페이지 컴포넌트 - navigate 작동시 state(여기선 유저 아이디) 를 AccountProfileDetails컴포넌트에 전달)
 - src/components/Team/List/TeamAllUsers.js ( 테이블을 생성하고 선택하여 삭제하는 테이블 컴포넌트 Get,Delete,Create 기능 구현)
 - src/components/Team/List/AccountProfileDetails.js (테이블에서 선택한 유저의 정보를 불러와서 Update해주는 기능 구현)
+
+# 실행방법
+1. 도커 빌드 : docker-compose -f docker-compose.yml up --build (포트랑 아이디 확인 in Config.go에서)
+2. backend > go run main.go 
+3. mysql connections 생성
+4. frontend > yarn start
+
